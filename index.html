@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Launcher simuladores</title>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -27,7 +28,6 @@
 
     <!-- Menú fullscreen -->
     <nav class="menu_hamburguesa">
-      <!-- Botón cerrar dentro del menú -->
       <button class="close-btn" aria-label="Cerrar menú">
         <i class="bi bi-x"></i>
       </button>
@@ -44,28 +44,65 @@
   </header>
 
   <main id="contenedor" class="contenedor">
+
     <div id="centinela"></div>
 
+    <!-- CARRUSEL -->
+    <div class="carousel">
+      <div class="carousel-track">
+       <div class="slide"><img src="fantasma.png"></div>
+       <div class="slide"><img src="fantasma1.png"></div>
+      <div class="slide"><img src="fantasma2.png"></div>
+      </div>
 
+      <button class="btn prev">‹</button>
+      <button class="btn next">›</button>
+    </div>
 
+  </main>
 
-  <!-- Scripts -->
-  <script src="app.js"></script>
+  <!-- SCRIPT ÚNICO (menu + carrusel) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+
+      /* --- MENÚ HAMBURGUESA --- */
       const toggleBtn = document.querySelector(".toggle-btn");
       const menuHamburguesa = document.querySelector(".menu_hamburguesa");
       const closeBtn = document.querySelector(".close-btn");
 
-      // Abrir menú
       toggleBtn.addEventListener("click", () => {
         menuHamburguesa.classList.add("show");
       });
 
-      // Cerrar menú
       closeBtn.addEventListener("click", () => {
         menuHamburguesa.classList.remove("show");
       });
+
+      /* --- CARRUSEL --- */
+      const track = document.querySelector('.carousel-track');
+      const slides = Array.from(track.children);
+      const prevButton = document.querySelector('.prev');
+      const nextButton = document.querySelector('.next');
+
+      let currentIndex = 0;
+
+      function updateCarousel() {
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        track.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+      }
+
+      nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+      });
+
+      prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+      });
+
+      window.addEventListener('resize', updateCarousel);
+
     });
   </script>
 
