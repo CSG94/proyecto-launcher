@@ -159,6 +159,14 @@ header {
 
 /*TEXTO PLANO CRIS*/
 
+.guia-instalacion {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #3b4550; /* tu color primario */
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
 
 #instalar-launcher {
   max-width: 900px;
@@ -233,6 +241,15 @@ header {
 }
 
 /*ESTUDIANTES*/
+
+.creado-estudiantes {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #3b4550; /* tu color primario */
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
 
 .seccion {
   padding: 40px 20px;
